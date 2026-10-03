@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gudeg Yogyakarta</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            Gudeg Jogja
+        </div>
+
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#tentang">Tentang Gudeg</a></li>
+            <li><a href="#sejarah">Sejarah</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#ulasan">Ulasan</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HOME -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+            <p class="subjudul">Kuliner Khas Yogyakarta</p>
+
+            <h1>Gudeg Yogyakarta</h1>
+
+            <p>
+                Mengenal cita rasa, sejarah, dan berbagai macam
+                sajian Gudeg khas Yogyakarta.
+            </p>
+
+            <a href="#menu" class="btn">
+                Lihat Menu
+            </a>
+        </div>
+
+    </section>
+
+
+    <!-- TENTANG GUDeg -->
+    <section id="tentang" class="section">
+
+        <div class="judul-section">
+            <p>Tentang Kuliner Nusantara</p>
+            <h2>Gudeg Yogyakarta</h2>
+        </div>
+
+        <div class="tentang-container">
+
+            <div class="tentang-image">
+                <img src="assets/gudeg-komplit.jpg" alt="Gudeg Yogyakarta">
+            </div>
+
+            <div class="tentang-text">
+
+                <h3>Apa Itu Gudeg?</h3>
+
+                <p>
+                    Gudeg merupakan salah satu makanan khas yang
+                    sangat identik dengan Yogyakarta. Makanan ini
+                    berbahan dasar nangka muda yang dimasak dengan
+                    berbagai bumbu dan santan hingga menghasilkan
+                    rasa yang khas.
+                </p>
+
+                <p>
+                    Gudeg biasanya disajikan bersama nasi, telur,
+                    ayam, tahu, tempe, dan sambal krecek.
+                    Perpaduan rasa manis, gurih, dan pedas menjadi
+                    ciri khas hidangan ini.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INFORMASI -->
+    <section class="info-section">
+
+        <div class="info-card">
+            <div class="info-icon">🍃</div>
+            <h3>Bahan Utama</h3>
+            <p>
+                Nangka muda yang dimasak dengan bumbu
+                khas dan santan.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">🥚</div>
+            <h3>Pelengkap</h3>
+            <p>
+                Telur, ayam, tahu, tempe dan sambal krecek
+                menjadi pelengkap Gudeg.
+            </p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon">🏛️</div>
+            <h3>Khas Yogyakarta</h3>
+            <p>
+                Gudeg menjadi salah satu kuliner yang
+                sangat dikenal dari Yogyakarta.
+            </p>
+        </div>
+
+    </section>
+
+
+    <!-- SEJARAH -->
+    <section id="sejarah" class="section sejarah-section">
+
+        <div class="judul-section">
+            <p>Cerita Kuliner</p>
+            <h2>Sejarah Gudeg</h2>
+        </div>
+
+        <div class="sejarah-content">
+
+            <p>
+                Gudeg telah menjadi bagian dari kehidupan kuliner
+                masyarakat Yogyakarta sejak lama. Proses memasak
+                nangka muda dengan santan dan berbagai bumbu
+                menghasilkan cita rasa yang khas.
+            </p>
+
+            <p>
+                Seiring perkembangan zaman, Gudeg memiliki berbagai
+                variasi penyajian. Ada Gudeg basah, Gudeg kering,
+                Gudeg dengan ayam, telur, tahu, tempe, hingga
+                sambal krecek.
+            </p>
+
+            <p>
+                Saat ini Gudeg dapat ditemukan di berbagai tempat
+                di Yogyakarta dan menjadi salah satu kuliner yang
+                sering dicari oleh wisatawan.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU -->
+    <section id="menu" class="section">
+
+        <div class="judul-section">
+            <p>Pilihan Sajian</p>
+            <h2>Menu Gudeg</h2>
+        </div>
+
+
+        <!-- SEARCH DAN FILTER -->
+        <div class="filter-container">
+
+            <input
+                type="text"
+                id="searchMenu"
+                placeholder="Cari menu Gudeg..."
+            >
+
+            <select id="filterMenu">
+
+                <option value="semua">
+                    Semua Menu
+                </option>
+
+                <option value="gudeg">
+                    Semua Gudeg
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- DAFTAR MENU -->
+        <div class="menu-container" id="menuContainer">
+
+
+            <!-- MENU 1 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-basah.jpg"
+                    alt="Gudeg Basah"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Basah</h3>
+
+                    <p>
+                        Gudeg dengan kuah santan yang lebih
+                        banyak sehingga memiliki tekstur lebih
+                        lembut dan gurih.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU 2 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-kering.jpg"
+                    alt="Gudeg Kering"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Kering</h3>
+
+                    <p>
+                        Gudeg dengan kuah yang lebih sedikit
+                        dan memiliki rasa manis yang khas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU 3 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-ayam.jpg"
+                    alt="Gudeg Ayam"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Ayam</h3>
+
+                    <p>
+                        Sajian Gudeg yang dilengkapi dengan
+                        potongan ayam berbumbu.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU 4 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-telur.jpg"
+                    alt="Gudeg Telur"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Telur</h3>
+
+                    <p>
+                        Gudeg yang disajikan bersama telur
+                        yang dimasak dengan bumbu khas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU 5 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-krecek.jpg"
+                    alt="Gudeg Krecek"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Krecek</h3>
+
+                    <p>
+                        Gudeg yang disajikan dengan sambal
+                        krecek bercita rasa gurih dan pedas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU 6 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-ayam-kampung.jpg"
+                    alt="Gudeg Ayam Kampung"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Ayam Kampung</h3>
+
+                    <p>
+                        Gudeg dengan pelengkap ayam kampung
+                        yang dimasak menggunakan bumbu khas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU 7 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-komplit.jpg"
+                    alt="Gudeg Komplit"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Komplit</h3>
+
+                    <p>
+                        Sajian Gudeg lengkap dengan nasi,
+                        ayam, telur, tahu, tempe dan krecek.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MENU 8 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-areh.jpg"
+                    alt="Gudeg Areh"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Areh</h3>
+
+                    <p>
+                        Gudeg dengan tambahan areh atau
+                        kuah santan kental sebagai pelengkap.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU 9 -->
+            <div class="menu-card" data-kategori="gudeg">
+
+                <img
+                    src="assets/gudeg-tahu-tempe.jpg"
+                    alt="Gudeg Tahu Tempe"
+                >
+
+                <div class="menu-content">
+
+                    <h3>Gudeg Tahu Tempe</h3>
+
+                    <p>
+                        Gudeg yang disajikan bersama tahu
+                        dan tempe sebagai pelengkap.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <p id="menuTidakAda" class="menu-tidak-ada">
+            Menu tidak ditemukan.
+        </p>
+
+    </section>
+
+
+    <!-- FAQ -->
+    <section id="faq" class="section faq-section">
+
+        <div class="judul-section">
+            <p>Pertanyaan Umum</p>
+            <h2>FAQ</h2>
+        </div>
+
+
+        <div class="faq-container">
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Apa itu Gudeg?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Gudeg adalah makanan khas Yogyakarta
+                        yang dibuat dari nangka muda dan
+                        dimasak dengan bumbu khas.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Apa saja pelengkap Gudeg?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Gudeg biasanya dapat disajikan bersama
+                        nasi, telur, ayam, tahu, tempe,
+                        dan sambal krecek.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Apa rasa Gudeg?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Gudeg dikenal memiliki rasa manis,
+                        gurih, dan dapat dipadukan dengan
+                        sambal krecek yang pedas.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="faq-item">
+
+                <button class="faq-question">
+                    Mengapa Gudeg identik dengan Yogyakarta?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    <p>
+                        Gudeg telah lama menjadi salah satu
+                        kuliner yang dikenal sebagai makanan
+                        khas Yogyakarta.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ULASAN -->
+    <section id="ulasan" class="section ulasan-section">
+
+        <div class="judul-section">
+            <p>Pendapat Pengunjung</p>
+            <h2>Ulasan</h2>
+        </div>
+
+
+        <div class="ulasan-form">
+
+            <h3>Tambahkan Ulasan</h3>
+
+            <input
+                type="text"
+                id="nama"
+                placeholder="Nama kamu"
+            >
+
+
+            <div class="rating-container">
+
+                <p>Rating:</p>
+
+                <div class="stars">
+
+                    <span class="star" data-rating="1">
+                        ★
+                    </span>
+
+                    <span class="star" data-rating="2">
+                        ★
+                    </span>
+
+                    <span class="star" data-rating="3">
+                        ★
+                    </span>
+
+                    <span class="star" data-rating="4">
+                        ★
+                    </span>
+
+                    <span class="star" data-rating="5">
+                        ★
+                    </span>
+
+                </div>
+
+                <p id="ratingText">
+                    Belum memilih rating
+                </p>
+
+            </div>
+
+
+            <textarea
+                id="ulasanText"
+                rows="5"
+                placeholder="Tulis ulasan kamu..."
+            ></textarea>
+
+
+            <button id="tambahUlasan">
+                Tambah Ulasan
+            </button>
+
+        </div>
+
+
+        <!-- DAFTAR ULASAN -->
+        <div id="daftarUlasan" class="daftar-ulasan">
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <h3>Gudeg Yogyakarta</h3>
+
+        <p>
+            Website kuliner Nusantara - Gudeg Yogyakarta
+        </p>
+
+        <p>
+            © 2025 Gudeg Jogja
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
