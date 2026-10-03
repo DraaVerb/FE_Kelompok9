@@ -634,4 +634,8 @@ footer p {
         font-size: 28px;
     }
 
+    .daftar-ulasan {
+        grid-template-columns: 1fr;
+    gap: 15px;
+    }
 }
