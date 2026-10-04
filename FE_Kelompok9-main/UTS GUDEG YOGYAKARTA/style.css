@@ -1,0 +1,641 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fffaf0;
+    color: #3d281c;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    width: 100%;
+    background-color: #5b321c;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    color: #f4c56d;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #f4c56d;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 650px;
+
+    background-image:
+        linear-gradient(
+            rgba(50, 25, 10, 0.60),
+            rgba(50, 25, 10, 0.60)
+        ),
+        url("assets/tugu-jogja.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero-content {
+    color: white;
+    max-width: 750px;
+}
+
+.subjudul {
+    color: #f4c56d;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.hero p:not(.subjudul) {
+    font-size: 19px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #c7772c;
+    color: white;
+    padding: 13px 28px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #9e571f;
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    padding: 80px 7%;
+}
+
+.judul-section {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.judul-section p {
+    color: #b86b27;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.judul-section h2 {
+    font-size: 38px;
+    color: #5b321c;
+}
+
+
+/* =========================
+   TENTANG
+========================= */
+
+.tentang-container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.tentang-image {
+    flex: 1;
+}
+
+.tentang-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.tentang-text {
+    flex: 1;
+}
+
+.tentang-text h3 {
+    font-size: 30px;
+    color: #5b321c;
+    margin-bottom: 20px;
+}
+
+.tentang-text p {
+    margin-bottom: 15px;
+    color: #614839;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.info-section {
+    padding: 60px 7%;
+    background-color: #f3e2c3;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.info-card {
+    background-color: white;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.info-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.info-card h3 {
+    color: #5b321c;
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   SEJARAH
+========================= */
+
+.sejarah-section {
+    background-color: #fff;
+}
+
+.sejarah-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.sejarah-content p {
+    margin-bottom: 20px;
+    text-align: justify;
+    color: #614839;
+}
+
+
+/* =========================
+   FILTER MENU
+========================= */
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-container input,
+.filter-container select {
+    padding: 13px 15px;
+    border: 1px solid #d4b28a;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 15px;
+}
+
+.filter-container input {
+    width: 350px;
+}
+
+.filter-container select {
+    width: 180px;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.menu-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+    transition: 0.3s;
+}
+
+.menu-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: 0.4s;
+}
+
+.menu-card:hover img {
+    transform: scale(1.05);
+}
+
+.menu-content {
+    padding: 22px;
+}
+
+.menu-content h3 {
+    color: #5b321c;
+    margin-bottom: 10px;
+    font-size: 21px;
+}
+
+.menu-content p {
+    color: #6b5749;
+    font-size: 14px;
+}
+
+.menu-tidak-ada {
+    display: none;
+    text-align: center;
+    margin-top: 30px;
+    color: #9b4b2d;
+    font-weight: bold;
+}
+
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-section {
+    background-color: #f7ead5;
+}
+
+.faq-container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 18px 20px;
+    border: none;
+    background-color: white;
+    color: #5b321c;
+    font-size: 16px;
+    font-weight: bold;
+
+    display: flex;
+    justify-content: space-between;
+
+    cursor: pointer;
+    text-align: left;
+}
+
+.faq-question:hover {
+    background-color: #fff7e8;
+}
+
+.faq-answer {
+    display: none;
+    padding: 0 20px 20px;
+    color: #614839;
+}
+
+
+/* =========================
+   ULASAN
+========================= */
+
+.ulasan-section {
+    background-color: #fffaf0;
+}
+
+.ulasan-form {
+    max-width: 700px;
+    margin: 0 auto 50px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.ulasan-form h3 {
+    color: #5b321c;
+    margin-bottom: 20px;
+}
+
+.ulasan-form input,
+.ulasan-form textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 15px;
+
+    border: 1px solid #d4b28a;
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+.ulasan-form textarea {
+    resize: vertical;
+}
+
+.rating-container {
+    margin-bottom: 15px;
+}
+
+.rating-container p {
+    margin-bottom: 5px;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    color: #ccc;
+    font-size: 32px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.star:hover {
+    transform: scale(1.1);
+}
+
+.star.aktif {
+    color: #f4b400;
+}
+
+#ratingText {
+    font-size: 14px;
+    color: #777;
+}
+
+#tambahUlasan {
+    border: none;
+    background-color: #5b321c;
+    color: white;
+    padding: 13px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#tambahUlasan:hover {
+    background-color: #8a4b26;
+}
+
+
+/* =========================
+   DAFTAR ULASAN
+========================= */
+
+.daftar-ulasan {
+    max-width: 900px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.ulasan-card {
+    background-color: white;
+    padding: 22px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.ulasan-card h4 {
+    color: #5b321c;
+    margin-bottom: 5px;
+}
+
+.ulasan-rating {
+    color: #f4b400;
+    margin-bottom: 10px;
+}
+
+.ulasan-card p {
+    color: #614839;
+    margin-bottom: 15px;
+}
+
+.hapus-ulasan {
+    border: none;
+    background-color: #a94442;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hapus-ulasan:hover {
+    background-color: #7f2927;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background-color: #3b2113;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+footer h3 {
+    color: #f4c56d;
+    margin-bottom: 8px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #e8d7c3;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .tentang-container {
+        flex-direction: column;
+    }
+
+    .menu-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-section {
+        grid-template-columns: 1fr;
+    }
+
+    .daftar-ulasan {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-menu {
+        gap: 10px;
+    }
+
+    .nav-menu a {
+        font-size: 13px;
+    }
+
+    .hero {
+        min-height: 550px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p:not(.subjudul) {
+        font-size: 16px;
+    }
+
+    .section {
+        padding: 60px 5%;
+    }
+
+    .judul-section h2 {
+        font-size: 30px;
+    }
+
+    .tentang-image img {
+        height: 280px;
+    }
+
+    .menu-container {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-container {
+        flex-direction: column;
+    }
+
+    .filter-container input,
+    .filter-container select {
+        width: 100%;
+    }
+
+    .ulasan-form {
+        padding: 20px;
+    }
+
+    .star {
+        font-size: 28px;
+    }
+
+    .daftar-ulasan {
+        grid-template-columns: 1fr;
+    gap: 15px;
+    }
+}
