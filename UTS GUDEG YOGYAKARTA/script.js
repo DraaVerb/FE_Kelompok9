@@ -1,4 +1,41 @@
 /* =========================
+   PENCATATAN AKTIVITAS
+========================= */
+
+function catatAktivitas(jenis, detail) {
+
+    let aktivitas = [];
+
+    try {
+        aktivitas =
+            JSON.parse(localStorage.getItem("aktivitasGudeg")) || [];
+    } catch (error) {
+        aktivitas = [];
+    }
+
+    if (!Array.isArray(aktivitas)) {
+        aktivitas = [];
+    }
+
+    aktivitas.push({
+        jenis: jenis,
+        waktu: new Date().toISOString(),
+        detail: detail || {}
+    });
+
+    try {
+        localStorage.setItem(
+            "aktivitasGudeg",
+            JSON.stringify(aktivitas)
+        );
+    } catch (error) {
+        // Kegagalan menyimpan log tidak mengganggu fitur utama.
+    }
+
+}
+
+
+/* =========================
    SEARCH DAN FILTER MENU
 ========================= */
 
@@ -66,6 +103,44 @@ searchMenu.addEventListener("input", filterMenuData);
 filterMenu.addEventListener("change", filterMenuData);
 
 
+let timerPencarian;
+let pencarianTerakhir = "";
+
+searchMenu.addEventListener("input", function() {
+
+    clearTimeout(timerPencarian);
+
+    const kataKunci = searchMenu.value.trim();
+
+    if (kataKunci === "") {
+        pencarianTerakhir = "";
+        return;
+    }
+
+    timerPencarian = setTimeout(function() {
+
+        if (kataKunci !== pencarianTerakhir) {
+            catatAktivitas("pencarian_menu", {
+                kataKunci: kataKunci
+            });
+
+            pencarianTerakhir = kataKunci;
+        }
+
+    }, 500);
+
+});
+
+
+filterMenu.addEventListener("change", function() {
+
+    catatAktivitas("filter_kategori", {
+        kategori: filterMenu.value
+    });
+
+});
+
+
 /* =========================
    FAQ
 ========================= */
@@ -88,6 +163,10 @@ faqQuestions.forEach(function(question) {
         } else {
 
             answer.style.display = "block";
+
+            catatAktivitas("buka_faq", {
+                pertanyaan: question.textContent.trim()
+            });
 
         }
 
@@ -138,6 +217,10 @@ stars.forEach(function(star) {
 
         ratingText.textContent =
             ratingDipilih + " dari 5 bintang";
+
+        catatAktivitas("beri_rating", {
+            rating: ratingDipilih
+        });
 
     });
 
@@ -304,6 +387,10 @@ tambahUlasan.addEventListener(
             JSON.stringify(dataUlasan)
         );
 
+        catatAktivitas("tambah_ulasan", {
+            rating: ratingDipilih
+        });
+
 
         namaInput.value = "";
 
@@ -347,6 +434,8 @@ function hapusUlasan(index) {
     }
 
 
+    const ratingUlasanDihapus = dataUlasan[index].rating;
+
     dataUlasan.splice(index, 1);
 
 
@@ -354,6 +443,10 @@ function hapusUlasan(index) {
         "ulasanGudeg",
         JSON.stringify(dataUlasan)
     );
+
+    catatAktivitas("hapus_ulasan", {
+        rating: ratingUlasanDihapus
+    });
 
 
     tampilkanUlasan();
