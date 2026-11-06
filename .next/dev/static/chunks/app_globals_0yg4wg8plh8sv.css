@@ -1,0 +1,593 @@
+/* [project]/app/globals.css [app-client] (css) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #3d281c;
+  background-color: #fffaf0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+.navbar {
+  z-index: 1000;
+  background-color: #5b321c;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 18px 7%;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  color: #f4c56d;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-menu {
+  gap: 25px;
+  list-style: none;
+  display: flex;
+}
+
+.nav-menu a {
+  color: #fff;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+.nav-menu a:hover {
+  color: #f4c56d;
+}
+
+.hero {
+  text-align: center;
+  background-image: linear-gradient(#32190a99, #32190a99), url("/assets/tugu-jogja.jpg");
+  background-position: center;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  min-height: 650px;
+  padding: 40px 20px;
+  display: flex;
+}
+
+.hero-content {
+  color: #fff;
+  max-width: 750px;
+}
+
+.subjudul {
+  color: #f4c56d;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  margin-bottom: 20px;
+  font-size: 60px;
+}
+
+.hero p:not(.subjudul) {
+  margin-bottom: 30px;
+  font-size: 19px;
+}
+
+.btn {
+  color: #fff;
+  background-color: #c7772c;
+  border-radius: 8px;
+  padding: 13px 28px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all .3s;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #9e571f;
+  transform: translateY(-2px);
+}
+
+.section {
+  padding: 80px 7%;
+}
+
+.judul-section {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.judul-section p {
+  color: #b86b27;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.judul-section h2 {
+  color: #5b321c;
+  font-size: 38px;
+}
+
+.tentang-container {
+  align-items: center;
+  gap: 50px;
+  display: flex;
+}
+
+.tentang-image {
+  flex: 1;
+}
+
+.tentang-image img {
+  object-fit: cover;
+  border-radius: 15px;
+  width: 100%;
+  height: 400px;
+  box-shadow: 0 10px 25px #00000026;
+}
+
+.tentang-text {
+  flex: 1;
+}
+
+.tentang-text h3 {
+  color: #5b321c;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.tentang-text p {
+  color: #614839;
+  margin-bottom: 15px;
+}
+
+.info-section {
+  background-color: #f3e2c3;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 60px 7%;
+  display: grid;
+}
+
+.info-card {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px 20px;
+  box-shadow: 0 5px 15px #00000014;
+}
+
+.info-icon {
+  margin-bottom: 15px;
+  font-size: 40px;
+}
+
+.info-card h3 {
+  color: #5b321c;
+  margin-bottom: 10px;
+}
+
+.sejarah-section {
+  background-color: #fff;
+}
+
+.sejarah-content {
+  max-width: 900px;
+  margin: auto;
+}
+
+.sejarah-content p {
+  text-align: justify;
+  color: #614839;
+  margin-bottom: 20px;
+}
+
+.filter-container {
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.filter-container input, .filter-container select {
+  background-color: #fff;
+  border: 1px solid #d4b28a;
+  border-radius: 8px;
+  padding: 13px 15px;
+  font-size: 15px;
+}
+
+.filter-container input {
+  width: 350px;
+}
+
+.filter-container select {
+  width: 180px;
+}
+
+.menu-container {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  display: grid;
+}
+
+.menu-card {
+  background-color: #fff;
+  border-radius: 12px;
+  transition: all .3s;
+  overflow: hidden;
+  box-shadow: 0 5px 18px #0000001a;
+}
+
+.menu-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 10px 25px #00000026;
+}
+
+.menu-card img {
+  object-fit: cover;
+  width: 100%;
+  height: 220px;
+  transition: all .4s;
+  display: block;
+}
+
+.menu-card:hover img {
+  transform: scale(1.05);
+}
+
+.menu-content {
+  padding: 22px;
+}
+
+.menu-content h3 {
+  color: #5b321c;
+  margin-bottom: 10px;
+  font-size: 21px;
+}
+
+.menu-content p {
+  color: #6b5749;
+  font-size: 14px;
+}
+
+.menu-tidak-ada {
+  text-align: center;
+  color: #9b4b2d;
+  margin-top: 30px;
+  font-weight: bold;
+  display: none;
+}
+
+.faq-section {
+  background-color: #f7ead5;
+}
+
+.faq-container {
+  max-width: 850px;
+  margin: auto;
+}
+
+.faq-item {
+  background-color: #fff;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.faq-question {
+  color: #5b321c;
+  cursor: pointer;
+  text-align: left;
+  background-color: #fff;
+  border: none;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+}
+
+.faq-question:hover {
+  background-color: #fff7e8;
+}
+
+.faq-answer {
+  color: #614839;
+  padding: 0 20px 20px;
+  display: none;
+}
+
+.ulasan-section {
+  background-color: #fffaf0;
+}
+
+.ulasan-form {
+  background-color: #fff;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  padding: 30px;
+  box-shadow: 0 5px 20px #00000014;
+}
+
+.ulasan-form h3 {
+  color: #5b321c;
+  margin-bottom: 20px;
+}
+
+.ulasan-form input, .ulasan-form textarea {
+  border: 1px solid #d4b28a;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 13px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+.ulasan-form textarea {
+  resize: vertical;
+}
+
+.rating-container {
+  margin-bottom: 15px;
+}
+
+.rating-container p {
+  margin-bottom: 5px;
+}
+
+.stars {
+  gap: 5px;
+  display: flex;
+}
+
+.star {
+  color: #ccc;
+  cursor: pointer;
+  font-size: 32px;
+  transition: all .2s;
+}
+
+.star:hover {
+  transform: scale(1.1);
+}
+
+.star.aktif {
+  color: #f4b400;
+}
+
+#ratingText {
+  color: #777;
+  font-size: 14px;
+}
+
+#tambahUlasan {
+  color: #fff;
+  cursor: pointer;
+  background-color: #5b321c;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 22px;
+  font-weight: bold;
+}
+
+#tambahUlasan:hover {
+  background-color: #8a4b26;
+}
+
+.daftar-ulasan {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+  display: grid;
+}
+
+.ulasan-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 22px;
+  box-shadow: 0 5px 15px #00000014;
+}
+
+.ulasan-card h4 {
+  color: #5b321c;
+  margin-bottom: 5px;
+}
+
+.ulasan-rating {
+  color: #f4b400;
+  margin-bottom: 10px;
+}
+
+.ulasan-card p {
+  color: #614839;
+  margin-bottom: 15px;
+}
+
+.hapus-ulasan {
+  color: #fff;
+  cursor: pointer;
+  background-color: #a94442;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+}
+
+.hapus-ulasan:hover {
+  background-color: #7f2927;
+}
+
+footer {
+  color: #fff;
+  text-align: center;
+  background-color: #3b2113;
+  padding: 35px 20px;
+}
+
+footer h3 {
+  color: #f4c56d;
+  margin-bottom: 8px;
+}
+
+footer p {
+  color: #e8d7c3;
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .hero h1 {
+    font-size: 45px;
+  }
+
+  .tentang-container {
+    flex-direction: column;
+  }
+
+  .menu-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .info-section, .daftar-ulasan {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 15px;
+  }
+
+  .logo {
+    font-size: 21px;
+  }
+
+  .nav-menu {
+    gap: 10px;
+  }
+
+  .nav-menu a {
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 550px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p:not(.subjudul) {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 60px 5%;
+  }
+
+  .judul-section h2 {
+    font-size: 30px;
+  }
+
+  .tentang-image img {
+    height: 280px;
+  }
+
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-container {
+    flex-direction: column;
+  }
+
+  .filter-container input, .filter-container select {
+    width: 100%;
+  }
+
+  .ulasan-form {
+    padding: 20px;
+  }
+
+  .star {
+    font-size: 28px;
+  }
+
+  .daftar-ulasan {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+.nav-menu a {
+  display: inline-block;
+}
+
+.faq-question span {
+  margin-left: 1rem;
+  font-size: 1.25rem;
+}
+
+.faq-answer {
+  display: block;
+}
+
+.faq-answer[hidden] {
+  display: none;
+}
+
+.star {
+  background: none;
+  border: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.star:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline-offset: 3px;
+  outline: 3px solid #c7772c;
+}
+
+.hapus-ulasan {
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    position: relative;
+  }
+
+  .nav-menu {
+    padding: 0;
+  }
+}
+
+/*# sourceMappingURL=app_globals_0yg4wg8plh8sv.css.map*/
