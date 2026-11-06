@@ -83,6 +83,8 @@ module.exports = mod;
 __turbopack_context__.s([
     "GET",
     ()=>GET,
+    "dynamic",
+    ()=>dynamic,
     "runtime",
     ()=>runtime
 ]);
@@ -90,15 +92,16 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$serv
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/db.js [app-route] (ecmascript)");
 ;
 ;
+const dynamic = "force-dynamic";
 const runtime = "nodejs";
 async function GET() {
     try {
-        const menu = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].prepare("SELECT * FROM menu").all();
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(menu);
+        const data = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$db$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].prepare("SELECT * FROM menu").all();
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data);
     } catch (error) {
-        console.error("Gagal mengambil menu:", error);
+        console.error("ERROR MENU:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: "Gagal mengambil data menu"
+            message: error.message
         }, {
             status: 500
         });

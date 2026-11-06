@@ -34,7 +34,7 @@ export default function Home() {
   const [nama, setNama] = useState("");
   const [teksUlasan, setTeksUlasan] = useState("");
   const [ulasan, setUlasan] = useState([]);
-  const [sudahMemuat, setSudahMemuat] = useState(false);
+  const [pesanUlasan, setPesanUlasan] = useState("");
 
   // MENU DARI SQLITE
   const [menu, setMenu] = useState([]);
@@ -62,29 +62,33 @@ export default function Home() {
     ambilMenu();
   }, []);
 
-  // Mengambil ulasan dari localStorage
-  useEffect(() => {
+  // Mengambil ulasan dari SQLite melalui API
+useEffect(() => {
+  async function ambilUlasan() {
     try {
-      const tersimpan = JSON.parse(
-        localStorage.getItem("ulasanGudeg") || "[]"
-      );
+      const response = await fetch("/api/ulasan");
 
-      if (Array.isArray(tersimpan)) {
-        setUlasan(tersimpan);
+      if (!response.ok) {
+        throw new Error("Gagal mengambil ulasan");
       }
-    } catch {
-      setUlasan([]);
-    }
 
-    setSudahMemuat(true);
-  }, []);
+      const data = await response.json();
 
-  // Menyimpan ulasan ke localStorage
-  useEffect(() => {
-    if (sudahMemuat) {
-      localStorage.setItem("ulasanGudeg", JSON.stringify(ulasan));
+      setUlasan(
+        data.map((item) => ({
+          id: item.id,
+          nama: item.nama,
+          rating: item.rating,
+          teks: item.teks ?? item.komentar,
+        }))
+      );
+    } catch (error) {
+      console.error("Error mengambil ulasan:", error);
     }
-  }, [ulasan, sudahMemuat]);
+  }
+
+  ambilUlasan();
+}, []);
 
   // Filter menu dari SQLite
   const menuTersaring = useMemo(
@@ -97,47 +101,95 @@ export default function Home() {
     [menu, kataKunci, kategori]
   );
 
-  // Menambahkan ulasan
-  function tambahUlasan(event) {
-    event.preventDefault();
+  
+async function tambahUlasan(event) {
+  event.preventDefault();
 
-    if (!nama.trim()) {
-      return alert("Silakan isi nama terlebih dahulu.");
-    }
+  if (!nama.trim()) {
+    return alert("Silakan isi nama terlebih dahulu.");
+  }
 
-    if (!rating) {
-      return alert("Silakan pilih rating bintang.");
-    }
+  if (!rating) {
+    return alert("Silakan pilih rating bintang.");
+  }
 
-    if (!teksUlasan.trim()) {
-      return alert("Silakan tulis ulasan terlebih dahulu.");
+  if (!teksUlasan.trim()) {
+    return alert("Silakan tulis ulasan terlebih dahulu.");
+  }
+
+  try {
+    const response = await fetch("/api/ulasan", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nama: nama.trim(),
+        teks: teksUlasan.trim(),
+        rating: rating,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Gagal menyimpan ulasan");
     }
 
     setUlasan((sebelumnya) => [
-      ...sebelumnya,
       {
-        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-        nama: nama.trim(),
-        rating,
-        teks: teksUlasan.trim(),
+        id: data.id,
+        nama: data.nama,
+        rating: data.rating,
+        teks: data.teks ?? data.komentar,
       },
+      ...sebelumnya,
     ]);
 
     setNama("");
     setTeksUlasan("");
     setRating(0);
 
-    alert("Ulasan berhasil ditambahkan!");
+    setPesanUlasan("Ulasan berhasil disimpan!");
+  } catch (error) {
+    console.error("Error menyimpan ulasan:", error);
+    alert("Gagal menyimpan ulasan ke database.");
+  }
+}
+
+
+  
+async function hapusUlasan(id) {
+  if (!confirm("Apakah kamu yakin ingin menghapus ulasan ini?")) {
+    return;
   }
 
-  // Menghapus ulasan
-  function hapusUlasan(id) {
-    if (confirm("Apakah kamu yakin ingin menghapus ulasan ini?")) {
-      setUlasan((sebelumnya) =>
-        sebelumnya.filter((item) => item.id !== id)
-      );
+  try {
+    const response = await fetch("/api/ulasan", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Gagal menghapus ulasan");
     }
+
+    setUlasan((sebelumnya) =>
+      sebelumnya.filter((item) => item.id !== id)
+    );
+
+    setPesanUlasan("Ulasan berhasil dihapus!");
+  } catch (error) {
+    console.error("Error menghapus ulasan:", error);
+    alert("Gagal menghapus ulasan.");
   }
+}
+
 
   return (
     <>
@@ -397,6 +449,12 @@ export default function Home() {
               Tambah Ulasan
             </button>
           </form>
+
+          {pesanUlasan && (
+            <p className="pesan-ulasan">
+              {pesanUlasan}
+            </p>
+          )}
 
           <div className="daftar-ulasan">
             {ulasan.length === 0 ? (
