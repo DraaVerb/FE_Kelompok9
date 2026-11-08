@@ -1,77 +1,68 @@
 
 import { NextResponse } from "next/server";
-import db from "@/lib/db";
+import prisma from "../../../lib/prisma.js";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// GET: mengambil semua ulasan dari SQLite
+// GET: mengambil semua ulasan
 export async function GET() {
   try {
-    const ulasan = db
-      .prepare("SELECT * FROM ulasan ORDER BY id DESC")
-      .all();
+    const data = await prisma.ulasan.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
 
-    return NextResponse.json(ulasan);
+    return NextResponse.json(data);
   } catch (error) {
-    console.error("Gagal mengambil ulasan:", error);
-
+    console.error("ERROR ULASAN:", error);
     return NextResponse.json(
-      { error: "Gagal mengambil data ulasan" },
+      { message: "Gagal mengambil ulasan" },
       { status: 500 }
     );
   }
 }
 
-// POST: menyimpan ulasan baru ke SQLite
+// POST: menambahkan ulasan
 export async function POST(request) {
   try {
-    const { nama, teks, rating } = await request.json();
+    const body = await request.json();
 
-    if (!nama?.trim() || !teks?.trim() || !rating) {
-      return NextResponse.json(
-        { error: "Data ulasan tidak lengkap" },
-        { status: 400 }
-      );
-    }
+    const data = await prisma.ulasan.create({
+      data: {
+        nama: body.nama,
+        komentar: body.teks,
+        rating: Number(body.rating),
+      },
+    });
 
-    const hasil = db
-      .prepare(
-        `INSERT INTO ulasan (nama, komentar, rating)
-         VALUES (?, ?, ?)`
-      )
-      .run(nama.trim(), teks.trim(), Number(rating));
-
-    const ulasanBaru = db
-      .prepare("SELECT * FROM ulasan WHERE id = ?")
-      .get(hasil.lastInsertRowid);
-
-    return NextResponse.json(ulasanBaru, { status: 201 });
+    return NextResponse.json(data, { status: 201 });
   } catch (error) {
-    console.error("Gagal menyimpan ulasan:", error);
-
+    console.error("ERROR POST ULASAN:", error);
     return NextResponse.json(
-      { error: "Gagal menyimpan ulasan" },
+      { message: "Gagal menyimpan ulasan" },
       { status: 500 }
     );
   }
 }
 
-// DELETE: menghapus ulasan dari SQLite
+// DELETE: menghapus ulasan
 export async function DELETE(request) {
   try {
-    const { id } = await request.json();
+    const body = await request.json();
 
-    db.prepare("DELETE FROM ulasan WHERE id = ?").run(id);
-
-    return NextResponse.json({
-      message: "Ulasan berhasil dihapus",
+    await prisma.ulasan.delete({
+      where: {
+        id: Number(body.id),
+      },
     });
-  } catch (error) {
-    console.error("Gagal menghapus ulasan:", error);
 
+    return NextResponse.json({ message: "Ulasan berhasil dihapus" });
+  } catch (error) {
+    console.error("ERROR DELETE ULASAN:", error);
     return NextResponse.json(
-      { error: "Gagal menghapus ulasan" },
+      { message: "Gagal menghapus ulasan" },
       { status: 500 }
     );
   }

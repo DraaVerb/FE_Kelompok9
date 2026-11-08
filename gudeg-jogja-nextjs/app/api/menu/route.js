@@ -1,19 +1,23 @@
-import { NextResponse } from "next/server";
-import db from "@/lib/db";
 
-export const dynamic = "force-dynamic";
+import { NextResponse } from "next/server";
+import prisma from "../../../lib/prisma.js";
+
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   try {
-    const data = db.prepare("SELECT * FROM menu").all();
+    const data = await prisma.menu.findMany({
+      orderBy: {
+        id: "asc",
+      },
+    });
 
     return NextResponse.json(data);
   } catch (error) {
     console.error("ERROR MENU:", error);
-
     return NextResponse.json(
-      { message: error.message },
+      { message: "Gagal mengambil data menu" },
       { status: 500 }
     );
   }

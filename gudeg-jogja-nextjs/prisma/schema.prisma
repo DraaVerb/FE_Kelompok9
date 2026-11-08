@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Menu {
+  id        Int    @id @default(autoincrement())
+  nama      String
+  harga     Int
+  deskripsi String
+  gambar    String
+}
+
+model Ulasan {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  komentar  String
+  rating    Int
+  createdAt DateTime @default(now())
+}
