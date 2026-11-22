@@ -14,19 +14,19 @@ export async function GET(request, { params }) {
   try {
     const session = await auth();
 
-    if (session?.user?.role !== "ADMIN") {
+    if (!session?.user?.id) {
       return NextResponse.json(
-        { message: "Akses hanya untuk Admin." },
-        { status: 403 }
+        { message: "Silakan login terlebih dahulu." },
+        { status: 401 }
       );
     }
 
     const { id } = await params;
 
-    const order = await prisma.order.findUnique({
-      where: { id },
+    const order = await prisma.order.findFirst({
+      where: { id, ...(session.user.role === "ADMIN" ? {} : { userId: session.user.id }) },
       include: {
-        user: true,
+        user: { select: { name: true, email: true } },
         items: { include: { menu: true } },
         payment: true,
       },
@@ -61,8 +61,13 @@ export async function PATCH(request, { params }) {
     }
 
     const { id } = await params;
-    const body = await request.json();
-    const status = String(body.status ?? "");
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json({ message: "JSON tidak valid." }, { status: 400 });
+    }
+    const status = body?.status;
 
     if (!allowedStatuses.includes(status)) {
       return NextResponse.json(
@@ -92,6 +97,7 @@ export async function PATCH(request, { params }) {
       order: updatedOrder,
     });
   } catch (error) {
+    if (error.code === "P2025") return NextResponse.json({ message: "Pesanan tidak ditemukan." }, { status: 404 });
     console.error("ADMIN_ORDER_PATCH_ERROR:", error);
     return NextResponse.json(
       { message: "Gagal memperbarui status pesanan." },

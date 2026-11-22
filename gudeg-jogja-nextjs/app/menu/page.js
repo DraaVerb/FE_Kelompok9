@@ -1,6 +1,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { AddToCart } from "../components";
+import MenuImage from "../menu-image";
 
 export const dynamic = "force-dynamic";
 
@@ -20,11 +21,7 @@ export default async function MenuPage() {
       <div className="grid">
         {menus.map((m) => (
           <article className="menuCard" key={m.id}>
-            {m.gambar ? (
-              <img src={m.gambar} alt={m.nama} />
-            ) : (
-              <div className="placeholder">🍲</div>
-            )}
+            <MenuImage src={m.gambar} alt={m.nama} />
 
             <div className="cardBody">
               <h2>{m.nama}</h2>

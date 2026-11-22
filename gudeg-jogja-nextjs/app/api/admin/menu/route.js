@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { normalizeMenuPhoto } from "@/lib/menu-photo";
 
 async function isAdmin() {
   const session = await auth();
@@ -17,6 +18,9 @@ export async function POST(request) {
   if (!(await isAdmin())) return NextResponse.json({ message: "Akses ditolak." }, { status: 403 });
   try {
     const body = await request.json();
+    if (!body || typeof body !== "object" || Array.isArray(body)) return NextResponse.json({ message: "Data tidak valid." }, { status: 400 });
+    let gambar;
+    try { gambar = normalizeMenuPhoto(body.image); } catch (e) { return NextResponse.json({ message: e.message }, { status: 400 }); }
     const name = String(body.name ?? "").trim();
     const price = Number(body.price);
     const stock = Number(body.stock ?? 0);
@@ -25,16 +29,17 @@ export async function POST(request) {
     }
     const menu = await prisma.menu.create({
       data: {
-        name,
-        description: String(body.description ?? "").trim() || null,
-        price,
+        nama: name,
+        deskripsi: String(body.description ?? "").trim(),
+        harga: price,
         stock,
-        image: String(body.image ?? "").trim() || null,
+        gambar,
         active: body.active !== false,
       },
     });
     return NextResponse.json(menu, { status: 201 });
   } catch (error) {
+    if (error instanceof SyntaxError) return NextResponse.json({ message: "JSON tidak valid." }, { status: 400 });
     console.error("ADMIN_MENU_POST_ERROR", error);
     return NextResponse.json({ message: "Gagal menambahkan menu." }, { status: 500 });
   }

@@ -1,5 +1,8 @@
 import Link from "next/link";
+import MenuImage from "./menu-image";
 import { prisma } from "../lib/prisma";
+
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const menus = await prisma.menu.findMany({ where: { active: true }, take: 3, orderBy: { createdAt: "desc" } });
@@ -15,8 +18,8 @@ export default async function HomePage() {
         <div className="sectionHead"><h2>Menu pilihan</h2><Link href="/menu">Lihat semua →</Link></div>
         <div className="grid">
           {menus.map((m) => <article className="menuCard" key={m.id}>
-            {m.image ? <img src={m.image} alt={m.name} /> : <div className="placeholder">🍲</div>}
-            <div className="cardBody"><h3>{m.name}</h3><p>{m.description}</p><strong>{rupiah(m.price)}</strong></div>
+            <MenuImage src={m.gambar} alt={m.nama} />
+            <div className="cardBody"><h3>{m.nama}</h3><p>{m.deskripsi}</p><strong>{rupiah(m.harga)}</strong></div>
           </article>)}
           {menus.length === 0 && <p>Menu akan tampil di sini setelah admin menambahkannya.</p>}
         </div>
