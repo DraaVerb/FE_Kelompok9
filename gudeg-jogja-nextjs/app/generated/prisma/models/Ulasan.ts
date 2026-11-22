@@ -9,8 +9,8 @@
  * 🟢 You can import this file directly.
  */
 import type * as runtime from "@prisma/client/runtime/client"
-import type * as $Enums from "../enums.ts"
-import type * as Prisma from "../internal/prismaNamespace.ts"
+import type * as $Enums from "../enums"
+import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model Ulasan
@@ -38,6 +38,7 @@ export type UlasanSumAggregateOutputType = {
 
 export type UlasanMinAggregateOutputType = {
   id: number | null
+  userId: string | null
   nama: string | null
   komentar: string | null
   rating: number | null
@@ -46,6 +47,7 @@ export type UlasanMinAggregateOutputType = {
 
 export type UlasanMaxAggregateOutputType = {
   id: number | null
+  userId: string | null
   nama: string | null
   komentar: string | null
   rating: number | null
@@ -54,6 +56,7 @@ export type UlasanMaxAggregateOutputType = {
 
 export type UlasanCountAggregateOutputType = {
   id: number
+  userId: number
   nama: number
   komentar: number
   rating: number
@@ -74,6 +77,7 @@ export type UlasanSumAggregateInputType = {
 
 export type UlasanMinAggregateInputType = {
   id?: true
+  userId?: true
   nama?: true
   komentar?: true
   rating?: true
@@ -82,6 +86,7 @@ export type UlasanMinAggregateInputType = {
 
 export type UlasanMaxAggregateInputType = {
   id?: true
+  userId?: true
   nama?: true
   komentar?: true
   rating?: true
@@ -90,6 +95,7 @@ export type UlasanMaxAggregateInputType = {
 
 export type UlasanCountAggregateInputType = {
   id?: true
+  userId?: true
   nama?: true
   komentar?: true
   rating?: true
@@ -185,6 +191,7 @@ export type UlasanGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type UlasanGroupByOutputType = {
   id: number
+  userId: string | null
   nama: string
   komentar: string
   rating: number
@@ -216,18 +223,22 @@ export type UlasanWhereInput = {
   OR?: Prisma.UlasanWhereInput[]
   NOT?: Prisma.UlasanWhereInput | Prisma.UlasanWhereInput[]
   id?: Prisma.IntFilter<"Ulasan"> | number
+  userId?: Prisma.StringNullableFilter<"Ulasan"> | string | null
   nama?: Prisma.StringFilter<"Ulasan"> | string
   komentar?: Prisma.StringFilter<"Ulasan"> | string
   rating?: Prisma.IntFilter<"Ulasan"> | number
   createdAt?: Prisma.DateTimeFilter<"Ulasan"> | Date | string
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type UlasanOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   nama?: Prisma.SortOrder
   komentar?: Prisma.SortOrder
   rating?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type UlasanWhereUniqueInput = Prisma.AtLeast<{
@@ -235,14 +246,17 @@ export type UlasanWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.UlasanWhereInput | Prisma.UlasanWhereInput[]
   OR?: Prisma.UlasanWhereInput[]
   NOT?: Prisma.UlasanWhereInput | Prisma.UlasanWhereInput[]
+  userId?: Prisma.StringNullableFilter<"Ulasan"> | string | null
   nama?: Prisma.StringFilter<"Ulasan"> | string
   komentar?: Prisma.StringFilter<"Ulasan"> | string
   rating?: Prisma.IntFilter<"Ulasan"> | number
   createdAt?: Prisma.DateTimeFilter<"Ulasan"> | Date | string
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type UlasanOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   nama?: Prisma.SortOrder
   komentar?: Prisma.SortOrder
   rating?: Prisma.SortOrder
@@ -259,6 +273,7 @@ export type UlasanScalarWhereWithAggregatesInput = {
   OR?: Prisma.UlasanScalarWhereWithAggregatesInput[]
   NOT?: Prisma.UlasanScalarWhereWithAggregatesInput | Prisma.UlasanScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Ulasan"> | number
+  userId?: Prisma.StringNullableWithAggregatesFilter<"Ulasan"> | string | null
   nama?: Prisma.StringWithAggregatesFilter<"Ulasan"> | string
   komentar?: Prisma.StringWithAggregatesFilter<"Ulasan"> | string
   rating?: Prisma.IntWithAggregatesFilter<"Ulasan"> | number
@@ -270,10 +285,12 @@ export type UlasanCreateInput = {
   komentar: string
   rating: number
   createdAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutUlasanInput
 }
 
 export type UlasanUncheckedCreateInput = {
   id?: number
+  userId?: string | null
   nama: string
   komentar: string
   rating: number
@@ -285,10 +302,12 @@ export type UlasanUpdateInput = {
   komentar?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutUlasanNestedInput
 }
 
 export type UlasanUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nama?: Prisma.StringFieldUpdateOperationsInput | string
   komentar?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
@@ -297,6 +316,7 @@ export type UlasanUncheckedUpdateInput = {
 
 export type UlasanCreateManyInput = {
   id?: number
+  userId?: string | null
   nama: string
   komentar: string
   rating: number
@@ -312,14 +332,26 @@ export type UlasanUpdateManyMutationInput = {
 
 export type UlasanUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   nama?: Prisma.StringFieldUpdateOperationsInput | string
   komentar?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+export type UlasanListRelationFilter = {
+  every?: Prisma.UlasanWhereInput
+  some?: Prisma.UlasanWhereInput
+  none?: Prisma.UlasanWhereInput
+}
+
+export type UlasanOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type UlasanCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nama?: Prisma.SortOrder
   komentar?: Prisma.SortOrder
   rating?: Prisma.SortOrder
@@ -333,6 +365,7 @@ export type UlasanAvgOrderByAggregateInput = {
 
 export type UlasanMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nama?: Prisma.SortOrder
   komentar?: Prisma.SortOrder
   rating?: Prisma.SortOrder
@@ -341,6 +374,7 @@ export type UlasanMaxOrderByAggregateInput = {
 
 export type UlasanMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   nama?: Prisma.SortOrder
   komentar?: Prisma.SortOrder
   rating?: Prisma.SortOrder
@@ -352,51 +386,196 @@ export type UlasanSumOrderByAggregateInput = {
   rating?: Prisma.SortOrder
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type UlasanCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.UlasanCreateWithoutUserInput, Prisma.UlasanUncheckedCreateWithoutUserInput> | Prisma.UlasanCreateWithoutUserInput[] | Prisma.UlasanUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UlasanCreateOrConnectWithoutUserInput | Prisma.UlasanCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.UlasanCreateManyUserInputEnvelope
+  connect?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+}
+
+export type UlasanUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.UlasanCreateWithoutUserInput, Prisma.UlasanUncheckedCreateWithoutUserInput> | Prisma.UlasanCreateWithoutUserInput[] | Prisma.UlasanUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UlasanCreateOrConnectWithoutUserInput | Prisma.UlasanCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.UlasanCreateManyUserInputEnvelope
+  connect?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+}
+
+export type UlasanUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.UlasanCreateWithoutUserInput, Prisma.UlasanUncheckedCreateWithoutUserInput> | Prisma.UlasanCreateWithoutUserInput[] | Prisma.UlasanUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UlasanCreateOrConnectWithoutUserInput | Prisma.UlasanCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.UlasanUpsertWithWhereUniqueWithoutUserInput | Prisma.UlasanUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.UlasanCreateManyUserInputEnvelope
+  set?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  disconnect?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  delete?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  connect?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  update?: Prisma.UlasanUpdateWithWhereUniqueWithoutUserInput | Prisma.UlasanUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.UlasanUpdateManyWithWhereWithoutUserInput | Prisma.UlasanUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.UlasanScalarWhereInput | Prisma.UlasanScalarWhereInput[]
+}
+
+export type UlasanUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.UlasanCreateWithoutUserInput, Prisma.UlasanUncheckedCreateWithoutUserInput> | Prisma.UlasanCreateWithoutUserInput[] | Prisma.UlasanUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.UlasanCreateOrConnectWithoutUserInput | Prisma.UlasanCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.UlasanUpsertWithWhereUniqueWithoutUserInput | Prisma.UlasanUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.UlasanCreateManyUserInputEnvelope
+  set?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  disconnect?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  delete?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  connect?: Prisma.UlasanWhereUniqueInput | Prisma.UlasanWhereUniqueInput[]
+  update?: Prisma.UlasanUpdateWithWhereUniqueWithoutUserInput | Prisma.UlasanUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.UlasanUpdateManyWithWhereWithoutUserInput | Prisma.UlasanUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.UlasanScalarWhereInput | Prisma.UlasanScalarWhereInput[]
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type UlasanCreateWithoutUserInput = {
+  nama: string
+  komentar: string
+  rating: number
+  createdAt?: Date | string
+}
+
+export type UlasanUncheckedCreateWithoutUserInput = {
+  id?: number
+  nama: string
+  komentar: string
+  rating: number
+  createdAt?: Date | string
+}
+
+export type UlasanCreateOrConnectWithoutUserInput = {
+  where: Prisma.UlasanWhereUniqueInput
+  create: Prisma.XOR<Prisma.UlasanCreateWithoutUserInput, Prisma.UlasanUncheckedCreateWithoutUserInput>
+}
+
+export type UlasanCreateManyUserInputEnvelope = {
+  data: Prisma.UlasanCreateManyUserInput | Prisma.UlasanCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type UlasanUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.UlasanWhereUniqueInput
+  update: Prisma.XOR<Prisma.UlasanUpdateWithoutUserInput, Prisma.UlasanUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.UlasanCreateWithoutUserInput, Prisma.UlasanUncheckedCreateWithoutUserInput>
+}
+
+export type UlasanUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.UlasanWhereUniqueInput
+  data: Prisma.XOR<Prisma.UlasanUpdateWithoutUserInput, Prisma.UlasanUncheckedUpdateWithoutUserInput>
+}
+
+export type UlasanUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.UlasanScalarWhereInput
+  data: Prisma.XOR<Prisma.UlasanUpdateManyMutationInput, Prisma.UlasanUncheckedUpdateManyWithoutUserInput>
+}
+
+export type UlasanScalarWhereInput = {
+  AND?: Prisma.UlasanScalarWhereInput | Prisma.UlasanScalarWhereInput[]
+  OR?: Prisma.UlasanScalarWhereInput[]
+  NOT?: Prisma.UlasanScalarWhereInput | Prisma.UlasanScalarWhereInput[]
+  id?: Prisma.IntFilter<"Ulasan"> | number
+  userId?: Prisma.StringNullableFilter<"Ulasan"> | string | null
+  nama?: Prisma.StringFilter<"Ulasan"> | string
+  komentar?: Prisma.StringFilter<"Ulasan"> | string
+  rating?: Prisma.IntFilter<"Ulasan"> | number
+  createdAt?: Prisma.DateTimeFilter<"Ulasan"> | Date | string
+}
+
+export type UlasanCreateManyUserInput = {
+  id?: number
+  nama: string
+  komentar: string
+  rating: number
+  createdAt?: Date | string
+}
+
+export type UlasanUpdateWithoutUserInput = {
+  nama?: Prisma.StringFieldUpdateOperationsInput | string
+  komentar?: Prisma.StringFieldUpdateOperationsInput | string
+  rating?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UlasanUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nama?: Prisma.StringFieldUpdateOperationsInput | string
+  komentar?: Prisma.StringFieldUpdateOperationsInput | string
+  rating?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UlasanUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  nama?: Prisma.StringFieldUpdateOperationsInput | string
+  komentar?: Prisma.StringFieldUpdateOperationsInput | string
+  rating?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type UlasanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   nama?: boolean
   komentar?: boolean
   rating?: boolean
   createdAt?: boolean
+  user?: boolean | Prisma.Ulasan$userArgs<ExtArgs>
 }, ExtArgs["result"]["ulasan"]>
 
 export type UlasanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   nama?: boolean
   komentar?: boolean
   rating?: boolean
   createdAt?: boolean
+  user?: boolean | Prisma.Ulasan$userArgs<ExtArgs>
 }, ExtArgs["result"]["ulasan"]>
 
 export type UlasanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  userId?: boolean
   nama?: boolean
   komentar?: boolean
   rating?: boolean
   createdAt?: boolean
+  user?: boolean | Prisma.Ulasan$userArgs<ExtArgs>
 }, ExtArgs["result"]["ulasan"]>
 
 export type UlasanSelectScalar = {
   id?: boolean
+  userId?: boolean
   nama?: boolean
   komentar?: boolean
   rating?: boolean
   createdAt?: boolean
 }
 
-export type UlasanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nama" | "komentar" | "rating" | "createdAt", ExtArgs["result"]["ulasan"]>
+export type UlasanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "nama" | "komentar" | "rating" | "createdAt", ExtArgs["result"]["ulasan"]>
+export type UlasanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Ulasan$userArgs<ExtArgs>
+}
+export type UlasanIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Ulasan$userArgs<ExtArgs>
+}
+export type UlasanIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  user?: boolean | Prisma.Ulasan$userArgs<ExtArgs>
+}
 
 export type $UlasanPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Ulasan"
-  objects: {}
+  objects: {
+    user: Prisma.$UserPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    userId: string | null
     nama: string
     komentar: string
     rating: number
@@ -795,6 +974,7 @@ readonly fields: UlasanFieldRefs;
  */
 export interface Prisma__UlasanClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  user<T extends Prisma.Ulasan$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Ulasan$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -825,6 +1005,7 @@ export interface Prisma__UlasanClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface UlasanFieldRefs {
   readonly id: Prisma.FieldRef<"Ulasan", 'Int'>
+  readonly userId: Prisma.FieldRef<"Ulasan", 'String'>
   readonly nama: Prisma.FieldRef<"Ulasan", 'String'>
   readonly komentar: Prisma.FieldRef<"Ulasan", 'String'>
   readonly rating: Prisma.FieldRef<"Ulasan", 'Int'>
@@ -846,6 +1027,10 @@ export type UlasanFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
+  /**
    * Filter, which Ulasan to fetch.
    */
   where: Prisma.UlasanWhereUniqueInput
@@ -864,6 +1049,10 @@ export type UlasanFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
+  /**
    * Filter, which Ulasan to fetch.
    */
   where: Prisma.UlasanWhereUniqueInput
@@ -881,6 +1070,10 @@ export type UlasanFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Ulasan
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
   /**
    * Filter, which Ulasan to fetch.
    */
@@ -930,6 +1123,10 @@ export type UlasanFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
+  /**
    * Filter, which Ulasan to fetch.
    */
   where?: Prisma.UlasanWhereInput
@@ -977,6 +1174,10 @@ export type UlasanFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the Ulasan
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
   /**
    * Filter, which Ulasans to fetch.
    */
@@ -1026,6 +1227,10 @@ export type UlasanCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
+  /**
    * The data needed to create a Ulasan.
    */
   data: Prisma.XOR<Prisma.UlasanCreateInput, Prisma.UlasanUncheckedCreateInput>
@@ -1059,6 +1264,10 @@ export type UlasanCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.UlasanCreateManyInput | Prisma.UlasanCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1073,6 +1282,10 @@ export type UlasanUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Ulasan
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
   /**
    * The data needed to update a Ulasan.
    */
@@ -1125,6 +1338,10 @@ export type UlasanUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Ulasans to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1139,6 +1356,10 @@ export type UlasanUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Ulasan
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
   /**
    * The filter to search for the Ulasan to update in case it exists.
    */
@@ -1166,6 +1387,10 @@ export type UlasanDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
+  /**
    * Filter which Ulasan to delete.
    */
   where: Prisma.UlasanWhereUniqueInput
@@ -1186,6 +1411,25 @@ export type UlasanDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Ulasan.user
+ */
+export type Ulasan$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+}
+
+/**
  * Ulasan without action
  */
 export type UlasanDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1197,4 +1441,8 @@ export type UlasanDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Ulasan
    */
   omit?: Prisma.UlasanOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UlasanInclude<ExtArgs> | null
 }
