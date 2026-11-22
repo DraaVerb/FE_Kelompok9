@@ -1,30 +1,22 @@
-import Link from "next/link";
-import MenuImage from "./menu-image";
-import { prisma } from "../lib/prisma";
+
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const menus = await prisma.menu.findMany({ where: { active: true }, take: 3, orderBy: { createdAt: "desc" } });
-  return (
-    <div>
-      <section className="hero">
-        <p className="eyebrow">Cita rasa khas Yogyakarta</p>
-        <h1>Gudeg Jogja,<br />hangat sampai rumah.</h1>
-        <p>Nikmati gudeg dengan rasa manis, gurih, dan autentik.</p>
-        <Link className="button" href="/menu">Lihat Menu</Link>
-      </section>
-      <section>
-        <div className="sectionHead"><h2>Menu pilihan</h2><Link href="/menu">Lihat semua →</Link></div>
-        <div className="grid">
-          {menus.map((m) => <article className="menuCard" key={m.id}>
-            <MenuImage src={m.gambar} alt={m.nama} />
-            <div className="cardBody"><h3>{m.nama}</h3><p>{m.deskripsi}</p><strong>{rupiah(m.harga)}</strong></div>
-          </article>)}
-          {menus.length === 0 && <p>Menu akan tampil di sini setelah admin menambahkannya.</p>}
-        </div>
-      </section>
-    </div>
-  );
+  const session = await auth();
+
+  // Belum login: masuk halaman login
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
+  // Login sebagai admin
+  if (session.user.role === "ADMIN") {
+    redirect("/admin");
+  }
+
+  // Login sebagai pelanggan
+  redirect("/menu");
 }
-function rupiah(n) { return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(n); }
